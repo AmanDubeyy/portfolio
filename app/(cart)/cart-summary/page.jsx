@@ -3,6 +3,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../CartSlice';
+import apiClient from "../../../utils";
 
 function page() {
 
@@ -10,13 +11,14 @@ function page() {
   const dispatch = useDispatch();
 
   const addToCartHandler = () => {
+    apiClient('http://local.api.in');
     dispatch(addToCart("second"))
   }
 
   return (
     <div>
-      {cart.map((val) => 
-        <li>{val}</li>
+      {cart.map((i, val) => 
+        <li key={val}>{i}</li>
       )}
 
       <button onClick={addToCartHandler}>
